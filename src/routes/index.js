@@ -13,3 +13,5 @@ router.use((req, res) => {
     res.status(404).json({ message: "Route not found" });
 });
 console.log("Server started: KSIT AR Campus Explorer");
+console.log("Routes loaded:", __filename);
+console.log("Auth Routes:", authRoutes);
