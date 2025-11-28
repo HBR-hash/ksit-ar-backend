@@ -1,5 +1,27 @@
 import { Router } from "express";
 import {
+    getProfile,
+    updateProfile,
+    deleteAccount,
+    updateARStatus
+} from "../controllers/user.controller.js";
+import { authenticate } from "../middleware/auth.js";
+
+const router = Router();
+
+router.get("/", authenticate, getProfile);
+router.put("/update", authenticate, updateProfile);
+router.delete("/delete", authenticate, deleteAccount);
+
+// ⭐ NEW ROUTE
+router.post("/update-ar-status", authenticate, updateARStatus);
+
+export default router;
+
+
+
+/*import { Router } from "express";
+import {
   getProfile,
   updateProfile,
   deleteAccount
@@ -13,6 +35,4 @@ router.put("/update", authenticate, updateProfile);
 router.delete("/delete", authenticate, deleteAccount);
 
 export default router;
-
-
-
+*/
