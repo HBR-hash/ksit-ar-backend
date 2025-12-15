@@ -15,6 +15,7 @@ export const getProfile = asyncHandler(async(req, res) => {
         phone: user.phone,
         lastLoginAt: user.lastLoginAt,
         createdAt: user.createdAt,
+		profileImage: user.profileImage, // ✅ ADD THIS
 
         // ✅ Added this
         arAppInstalled: user.arAppInstalled
@@ -63,7 +64,8 @@ export const updateProfile = asyncHandler(async(req, res) => {
         phone: user.phone,
 
         // Include this so frontend always stays updated
-        arAppInstalled: user.arAppInstalled
+        arAppInstalled: user.arAppInstalled,
+		profileImage: user.profileImage,  // ✅ ADD THIS
     });
 });
 

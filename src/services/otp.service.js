@@ -19,18 +19,8 @@ export const sendFast2Sms = async({ to, code }) => {
 
     try {
         const response = await axios.get(url, { params });
-        console.log("Fast2SMS Response:", response.data);
         return response.data;
     } catch (err) {
-        let errorMessage = "Unknown error";
-
-        if (err && err.response && err.response.data) {
-            errorMessage = err.response.data;
-        } else if (err && err.message) {
-            errorMessage = err.message;
-        }
-
-        console.error("Fast2SMS Error:", errorMessage);
         throw new Error("Unable to send OTP SMS. Please try again later.");
     }
 };
@@ -40,9 +30,6 @@ export const issueOtp = async({ phone, purpose, payload }) => {
 
     const code = generateCode();
     const expiresAt = dayjs().add(config.otpExpiryMinutes, "minute").toDate();
-
-    // Log OTP for debugging
-    console.log("Generated OTP:", code);
 
     const otp = await Otp.create({
         phone,
@@ -82,9 +69,6 @@ export const resendOtp = async({ phone, purpose }) => {
 
     otp.resendCount += 1;
     await otp.save();
-
-    // Log OTP for resend as well
-    console.log("Resending OTP:", otp.code);
 
     await sendFast2Sms({ to: phone, code: otp.code });
 
