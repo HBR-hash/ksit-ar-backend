@@ -24,6 +24,7 @@ required.forEach((key) => {
 export const config = {
     env: process.env.NODE_ENV || "development",
     port: process.env.PORT || 5000,
+	apiUrl: process.env.API_URL || "http://localhost:5000", // ✅ ADD THIS
 
     mongoUri: process.env.MONGODB_URI || "",
     jwtSecret: process.env.JWT_SECRET || "",
