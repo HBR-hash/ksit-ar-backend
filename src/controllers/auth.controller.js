@@ -13,7 +13,7 @@ import {
     issueOtp,
     resendOtp,
     verifyOtpCode
-} from "../services/otp.service.js"; // Fast2SMS service
+} from "../services/otp.service.js";
 
 import { hashPassword, comparePassword } from "../utils/password.js";
 import { createToken } from "../utils/token.js";
@@ -141,7 +141,11 @@ export const verifyOtp = asyncHandler(async(req, res) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            phone: user.phone
+            phone: user.phone,
+            profileImage: user.profileImage,  // ✅ ADDED
+            lastLoginAt: user.lastLoginAt,
+            createdAt: user.createdAt,
+            arAppInstalled: user.arAppInstalled
         }
     });
 });
@@ -178,7 +182,11 @@ export const login = asyncHandler(async(req, res) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            phone: user.phone
+            phone: user.phone,
+            profileImage: user.profileImage,  // ✅ ADDED
+            lastLoginAt: user.lastLoginAt,
+            createdAt: user.createdAt,
+            arAppInstalled: user.arAppInstalled
         }
     });
 });
