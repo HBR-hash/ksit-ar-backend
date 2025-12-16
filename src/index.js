@@ -15,12 +15,12 @@ app.set("trust proxy", 1);
 
 // ✅ IMPROVED CORS CONFIGURATION
 app.use(cors({
-  origin: true, // Allow all origins (or specify your frontend URL)
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   exposedHeaders: ['Content-Type', 'Authorization'],
-  maxAge: 86400, // 24 hours - cache preflight requests
+  maxAge: 86400,
   preflightContinue: false,
   optionsSuccessStatus: 204
 }));
@@ -38,8 +38,8 @@ app.get("/health", (_, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// ✅ EXPLICIT OPTIONS HANDLER (for preflight)
-app.options("*", cors());
+// ❌ REMOVE THIS LINE - IT'S CAUSING THE ERROR
+// app.options("*", cors());
 
 app.use("/api", router);
 
@@ -62,7 +62,6 @@ start().catch((error) => {
   console.error("[server] Failed to start", error);
   process.exit(1);
 });
-
 
 /*import express from "express";
 import cors from "cors";
