@@ -55,7 +55,7 @@ export const updateUserSchema = Joi.object({
     name: Joi.string().min(2).max(60),
     email: Joi.string().email(),
     phone: Joi.string().pattern(/^[0-9]{10,15}$/),
-	profileImage: Joi.string().uri().allow(null, '')  // ✅ ADD THIS LINE
+	profileImage: Joi.string().allow(null, '').max(5242880).optional()
 }).min(1);
 
 
